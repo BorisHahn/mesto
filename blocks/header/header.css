@@ -1,5 +1,5 @@
 .header {
-  max-width: 68%;
+  width: 100%;
   margin: 0 auto;
   padding: 0;
   padding-top: 45px;
@@ -8,7 +8,6 @@
 }
 @media (max-width: 625px) {
   .header {
-    max-width: 100%;
     padding-top: 28px;
   }
 }

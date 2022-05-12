@@ -1,4 +1,4 @@
-.profile__info_editButton {
+.profile__info-title__editButton {
   margin: 0;
   padding: 0;
   width: 24px;
@@ -10,18 +10,23 @@
   border: 1px solid #FFFFFF;
   box-sizing: border-box;
   cursor: pointer;
-  position: absolute;
-  right: -40px;
-  bottom: 37px;
 }
-.profile__info_editButton:hover {
+.profile__info-title__editButton:hover {
   opacity: 0.6;
   transition: 0.25s;
 }
 
 @media (max-width: 625px) {
-  .profile__info_editButton {
-    right: -40px;
-    top: 4px;
+  .profile__info-title__editButton {
+    width: 18px;
+    height: 18px;
+  }
+}
+@media (max-width: 320px) {
+  .profile__info-title__editButton {
+    position: absolute;
+    left: 100%;
+    margin-top: 8px;
+    margin-left: 10px;
   }
 }

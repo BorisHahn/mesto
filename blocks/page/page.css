@@ -1,8 +1,10 @@
 .page {
-    min-width: 320px;
-    max-width: 1280px;
-    min-height: 100%;
+    width: 880px;
+    height: 100%;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     font-family: 'Inter', Arial, sans-serif;
     background-color: #000000;
     color: #FFFFFF;
@@ -13,4 +15,13 @@
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
   }
-  
+  @media (max-width: 1023px) {
+    .page {
+      width: 581px;
+    }
+  }
+  @media (max-width: 625px) {
+    .page {
+      width: 282px;
+    }
+  }
