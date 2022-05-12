@@ -22,6 +22,6 @@
   }
   @media (max-width: 625px) {
     .page {
-      width: 282px;
+      width: 100%;
     }
   }
