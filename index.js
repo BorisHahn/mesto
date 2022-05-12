@@ -39,11 +39,11 @@ function activeLikes () {
     item.addEventListener("click", () => {
       if (item.classList.contains("active")) {
         item.classList.remove("active");
-        item.src = "./imges/like.svg";
+        item.style.backgroundImage = "url('./imges/like.svg')";
       }
       else {
         item.classList.add("active");
-        item.src = "./imges/likeActive.svg";
+        item.style.backgroundImage = "url('./imges/likeActive.svg')";
       }
     })
   })
