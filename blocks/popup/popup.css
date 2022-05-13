@@ -4,10 +4,12 @@
   position: absolute;
   top:0;
   left: 0;
+  display: none;
+}
+.popup_opened {
   display: grid;
   justify-content: center;
   align-items: center;
-  display: none;
 }
 .popup:before {
   background-color: #000000;
