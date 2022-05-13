@@ -3,9 +3,9 @@ let closeButton = popup.querySelector('.popup__close');
 let popupForm = document.querySelector('.popup__container');
 let nameInput = popupForm.querySelector('.popup__nameInput');
 let jobInput = popupForm.querySelector('.popup__jobInput');
-let profileName = document.querySelector('.profile__info-title_name');
-let profileJob = document.querySelector('.profile__info__description');
-let editButton = document.querySelector('.profile__info-title_editButton');
+let profileName = document.querySelector('.profile__name');
+let profileJob = document.querySelector('.profile__description');
+let editButton = document.querySelector('.profile__editButton');
 
     closeButton.addEventListener('click', (e) => {
       e.preventDefault();

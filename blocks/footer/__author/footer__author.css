@@ -10,5 +10,6 @@
 @media (max-width: 625px) {
   .footer__author {
     padding-left: 19px;
+    font-size: 14px;
   }
 }
