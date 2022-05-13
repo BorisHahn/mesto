@@ -1,4 +1,4 @@
-.popup__container__title {
+.popup__title {
   margin: 0;
   padding: 0;
   padding-top: 34px;
@@ -12,7 +12,7 @@
   color: black;
 }
 @media (max-width: 625px) {
-  .popup__container__title {
+  .popup__title {
     font-size: 18px;
     padding-top: 25px;
     padding-left: 0;
