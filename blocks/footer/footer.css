@@ -4,7 +4,7 @@
   padding: 0;
   padding-bottom: 60px;
   color: #545454;
-  flex: 0 0 auto;
+  flex-shrink: 0;
 }
 @media (max-width: 625px) {
   .footer {

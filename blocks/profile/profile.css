@@ -10,12 +10,12 @@
 }
 @media (max-width: 1023px) {
   .profile {
-    grid-template-columns: 120px 1fr;
+    grid-template-columns: 120px auto;
     grid-template-rows: 120px auto;
     grid-template-areas: "avatar name"
                          "avatar addButton";
     justify-content: center;
-    column-gap: 60px;
+    column-gap: 50px;
   }
 }
 @media (max-width: 625px) {

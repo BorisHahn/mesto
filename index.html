@@ -5,58 +5,58 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./page/index.css" rel="stylesheet">
-    <title>Metro</title>
+    <title>Mesto</title>
 </head>
 <body class="body">
     <div class="page">
       <header class="header">
         <img class="header__logo" src="./imges/logo.svg" alt="Логотип">
       </header>
-      <div class="main">
+      <main class="main">
         <section class="profile">
           <img class="profile__avatar" src="./imges/profileImg.jpg" alt="Картинка профиля">
           <div class="profile__info">
             <div class="profile__info-title">
               <h1 class="profile__name">Жак-Ив-Кусто</h1>
-              <button class="profile__editButton" aria-label="Редактировать"></button>
+              <button class="profile__edit-button" aria-label="Редактировать"></button>
             </div>
             <h2 class="profile__description">Исследователь океана</h2>
           </div>
-          <button class="profile__addButton" aria-label="Добавить"></button>
+          <button class="profile__add-button" aria-label="Добавить"></button>
         </section>
-        <ul class="elements">
-          <li class="elements-item">
-            <img class="elements-item__image" src="./imges/fabio-spinelli-cPpmFa1OiGU-unsplash.jpg" alt="БМВ R9T">
-            <h2 class="elements-item__title">БМВ R9T</h2>
-            <button class="elements-item__like" type="button" aria-label="Лайк"></button>
+        <ul class="cards">
+          <li class="cards-item">
+            <img class="cards-item__image" src="./imges/fabio-spinelli-cPpmFa1OiGU-unsplash.jpg" alt="БМВ R9T">
+            <h2 class="cards-item__title">БМВ R9T</h2>
+            <button class="cards-item__like" type="button" aria-label="Лайк"></button>
           </li>
-          <li class="elements-item">
-            <img class="elements-item__image" src="./imges/petr-stradal-VwgQxs1-xLM-unsplash.jpg" alt="Реймс">
-            <h2 class="elements-item__title">Реймс</h2>
-            <button class="elements-item__like" type="button" aria-label="Лайк"></button>
+          <li class="cards-item">
+            <img class="cards-item__image" src="./imges/petr-stradal-VwgQxs1-xLM-unsplash.jpg" alt="Реймс">
+            <h2 class="cards-item__title">Реймс</h2>
+            <button class="cards-item__like" type="button" aria-label="Лайк"></button>
           </li>
-          <li class="elements-item">
-            <img class="elements-item__image" src="./imges/max-itin-xlhl7rI2M4I-unsplash.jpg" alt="Ямаха R6">
-            <h2 class="elements-item__title">Ямаха R6</h2>
-            <button class="elements-item__like" type="button" aria-label="Лайк"></button>
+          <li class="cards-item">
+            <img class="cards-item__image" src="./imges/max-itin-xlhl7rI2M4I-unsplash.jpg" alt="Ямаха R6">
+            <h2 class="cards-item__title">Ямаха R6</h2>
+            <button class="cards-item__like" type="button" aria-label="Лайк"></button>
           </li>
-          <li class="elements-item">
-            <img class="elements-item__image" src="./imges/elbrus.png" alt="Гора Эльбрус">
-            <h2 class="elements-item__title">Эльбрус</h2>
-            <button class="elements-item__like" type="button" aria-label="Лайк"></button>
+          <li class="cards-item">
+            <img class="cards-item__image" src="./imges/elbrus.png" alt="Гора Эльбрус">
+            <h2 class="cards-item__title">Эльбрус</h2>
+            <button class="cards-item__like" type="button" aria-label="Лайк"></button>
           </li>
-          <li class="elements-item">
-            <img class="elements-item__image" src="./imges/dombay.png" alt="Карачаевск">
-            <h2 class="elements-item__title">Карачаевск</h2>
-            <button class="elements-item__like" type="button" aria-label="Лайк"></button>
+          <li class="cards-item">
+            <img class="cards-item__image" src="./imges/dombay.png" alt="Карачаевск">
+            <h2 class="cards-item__title">Карачаевск</h2>
+            <button class="cards-item__like" type="button" aria-label="Лайк"></button>
           </li>
-          <li class="elements-item">
-            <img class="elements-item__image" src="./imges/karachaevsk.png" alt="Грозный">
-            <h2 class="elements-item__title">Грозный</h2>
-            <button class="elements-item__like" type="button" aria-label="Лайк"></button>
+          <li class="cards-item">
+            <img class="cards-item__image" src="./imges/karachaevsk.png" alt="Грозный">
+            <h2 class="cards-item__title">Грозный</h2>
+            <button class="cards-item__like" type="button" aria-label="Лайк"></button>
           </li>
         </ul>
-      </div>
+      </main>
       <footer class="footer">
         <p class="footer__author">&copy; 2022. Mesto Russia</p>
       </footer>
@@ -64,8 +64,8 @@
       <div class="popup">
         <form class="popup__container">
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input class="popup__nameInput" type="text" required>
-          <input class="popup__jobInput" type="text" required>
+          <input class="popup__name-input" type="text" required>
+          <input class="popup__job-input" type="text" required>
           <button class="popup__submit" type="submit">Сохранить</button>
           <button class="popup__close" aria-label="Закрыть"></button>
         </form>

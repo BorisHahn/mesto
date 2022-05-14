@@ -6,10 +6,13 @@
   font-size: 18px;
   line-height: 122%; 
 }
-
-@media (max-width: 625px) {
+@media (max-width: 1023px) {
   .footer__author {
     padding-left: 19px;
+  }
+}
+@media (max-width: 320px) {
+  .footer__author {
     font-size: 14px;
   }
 }

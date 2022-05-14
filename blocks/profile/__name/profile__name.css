@@ -13,7 +13,7 @@
 }
 @media (max-width: 1023px) {
   .profile__name {
-    max-width: 350px;
+    max-width: 380px;
   }
 }
 @media (max-width: 625px) {
@@ -23,9 +23,14 @@
     line-height: 121%;
   }
 }
+@media (max-width: 420px) {
+  .profile__name {
+    max-width: 300px;
+  }
+}
 @media (max-width: 320px) {
   .profile__name {
     position: relative;
-    max-width: 240px;
+    max-width: 220px;
   }
 }

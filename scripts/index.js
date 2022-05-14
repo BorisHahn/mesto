@@ -1,27 +1,12 @@
-let popup = document.querySelector('.popup');
-let closeButton = popup.querySelector('.popup__close');
-let popupForm = document.querySelector('.popup__container');
-let nameInput = popupForm.querySelector('.popup__nameInput');
-let jobInput = popupForm.querySelector('.popup__jobInput');
-let profileName = document.querySelector('.profile__name');
-let profileJob = document.querySelector('.profile__description');
-let editButton = document.querySelector('.profile__editButton');
+const popup = document.querySelector('.popup');
+const closeButton = popup.querySelector('.popup__close');
+const popupForm = document.querySelector('.popup__container');
+const nameInput = popupForm.querySelector('.popup__name-input');
+const jobInput = popupForm.querySelector('.popup__job-input');
+const profileName = document.querySelector('.profile__name');
+const profileJob = document.querySelector('.profile__description');
+const editButton = document.querySelector('.profile__edit-button');
 
-    closeButton.addEventListener('click', (e) => {
-      e.preventDefault();
-      hidePopup();
-    });
-
-    editButton.addEventListener('click', (e) => {
-      e.preventDefault();
-      popup.classList.add('popup_opened');
-      popup.style.display = 'flex';
-      nameInput.value = profileName.textContent;
-      jobInput.value = profileJob.textContent;
-    });
-
-    popupForm.addEventListener('submit', formSubmitHandler);
-  
 function formSubmitHandler(e) {
   e.preventDefault(); 
   profileName.textContent = nameInput.value;
@@ -35,18 +20,33 @@ function hidePopup() {
 }
 
 function activeLikes() {
-  document.querySelectorAll('.elements-item__like').forEach(item => {
-    item.addEventListener("click", () => {
-      if (item.classList.contains("active")) {
-        item.classList.remove("active");
-        item.style.backgroundImage = "url('./imges/like.svg')";
+  document.querySelectorAll('.cards-item__like').forEach(item => {
+    item.addEventListener('click', () => {
+      if (item.classList.contains('active')) {
+        item.classList.remove('active');
+        item.style.backgroundImage = 'url("./imges/like.svg")';
       }
       else {
-        item.classList.add("active");
-        item.style.backgroundImage = "url('./imges/likeActive.svg')";
+        item.classList.add('active');
+        item.style.backgroundImage = 'url("./imges/likeActive.svg")';
       }
     });
   });
 }
 
 activeLikes ();
+
+closeButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  hidePopup();
+});
+
+editButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  popup.classList.add('popup_opened');
+  popup.style.display = 'flex';
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
+});
+
+popupForm.addEventListener('submit', formSubmitHandler);

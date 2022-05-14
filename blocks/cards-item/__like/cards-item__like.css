@@ -1,4 +1,4 @@
-.elements-item__like {
+.cards-item__like {
   width: 22px;
   height: 19px;
   border: none;
@@ -9,8 +9,8 @@
   background-image: url('../../../imges/like.svg');
   background-repeat: no-repeat;
   background-position: center;
+  transition: 0.25s ease-in-out;
 }
-.elements-item__like:hover {
+.cards-item__like:hover {
   opacity: 0.5;
-  transition: 0.25s;
 }

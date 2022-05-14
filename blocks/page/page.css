@@ -1,6 +1,6 @@
 .page {
     width: 880px;
-    height: 100%;
+    min-height: 100vh;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -16,11 +16,6 @@
     -moz-text-size-adjust: 100%;
   }
   @media (max-width: 1023px) {
-    .page {
-      width: 581px;
-    }
-  }
-  @media (max-width: 625px) {
     .page {
       width: 100%;
     }
