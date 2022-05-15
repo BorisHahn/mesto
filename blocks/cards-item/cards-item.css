@@ -7,9 +7,5 @@
  justify-content: space-between;
  background-color: #FFFFFF;
  border-radius: 10px;
+ position: relative;
 }
-/* @media (max-width: 625px) {
-  .cards-item {
-    width: 100%;
-  }
-} */
