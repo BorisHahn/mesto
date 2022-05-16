@@ -76,6 +76,13 @@ function addFormSubmitHandler(e) {
   linkInput.value = "";
 }
 
+function addCardsItem(inputName, inputLink) {
+  initialCards.unshift({
+    name: inputName,
+    link: inputLink
+  });
+}
+
 function activeLikes() {
   cards.querySelectorAll('.cards-item__like').forEach(item => {
     item.addEventListener('click', () => {
@@ -92,13 +99,6 @@ function activeLikes() {
 }
 
 activeLikes ();
-
-function addCardsItem(inputName, inputLink) {
-  initialCards.unshift({
-    name: inputName,
-    link: inputLink
-  });
-}
 
 function deleteCardsItem() {
   cards.querySelectorAll('.cards-item__delete').forEach(item => {
