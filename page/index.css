@@ -38,3 +38,5 @@
 @import url(../blocks/popup-add/__name-input/popup-add__name-input.css);
 @import url(../blocks/popup-add/__link-input/popup-add__link-input.css);
 @import url(../blocks/popup-add/__submit/popup-add__submit.css);
+@import url(../blocks/fade/fade.css);
+@import url(../blocks/appear/appear.css);
