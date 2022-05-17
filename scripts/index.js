@@ -41,39 +41,42 @@ let initialCards = [
   }
 ];
 
-function createCardsItem(name, link) {
+function createCard(name, link, i) {
   return cards.innerHTML += `
     <li class="cards-item">
       <img class="cards-item__image" src=${link} alt="${name}">
       <h2 class="cards-item__title">${name}</h2>
       <button class="cards-item__like" type="button" aria-label="Лайк"></button>
-      <button class="cards-item__delete" type="button" aria-label="Удалить"></button>
+      <button class="cards-item__delete" type="button" aria-label="Удалить" item-num="${i}"></button>
     </li>
   `;
 }
-initialCards.forEach(item => {
-  createCardsItem(item.name, item.link);
-});
+
+function createCards() {
+  cards.innerHTML = "";
+  initialCards.forEach((item, i) => {
+    createCard(item.name, item.link, i);
+  });
+  initDeleteEvents();
+  activeLikes();
+}
+
+createCards();
 
 function formSubmitHandler(e) {
   e.preventDefault(); 
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-  hidePopup(popup);
+  popup.classList.remove('popup_opened');
 }
 
 function addFormSubmitHandler(e) {
   e.preventDefault(); 
   addCardsItem(nameInputAdd.value, linkInput.value);
-  cards.innerHTML = "";
-  initialCards.forEach(item => {
-    createCardsItem(item.name, item.link);
-  });
-  hidePopup(popupAdd);
-  deleteCardsItem();
-  activeLikes();
+  createCards();
   nameInputAdd.value = "";
   linkInput.value = "";
+  popupAdd.classList.remove('popup_opened');
 }
 
 function addCardsItem(inputName, inputLink) {
@@ -98,59 +101,34 @@ function activeLikes() {
   });
 }
 
-activeLikes ();
-
-function deleteCardsItem() {
+function initDeleteEvents() {
   cards.querySelectorAll('.cards-item__delete').forEach(item => {
-    item.addEventListener('click', (e) => {
-    const target = e.target;
-    target.parentNode.remove();
+    item.addEventListener('click', () => {
+    const num = parseInt(item.getAttribute('item-num'));
+    initialCards.splice(num, 1);
+    createCards();
     });
   });
-}
-
-deleteCardsItem();
-
-function showPopup(elem) {
-  if (elem.classList.contains('appear')) {
-    elem.classList.remove('appear');
-    elem.classList.add('fade');
-  }
-  else {
-    elem.classList.add('fade');
-  }
-}
-
-function hidePopup(elem) {
-  elem.classList.remove('fade');
-  elem.classList.add('appear');
-  elem.style.display = 'none';
 }
 
 closeButton.addEventListener('click', (e) => {
   e.preventDefault();
   popup.classList.remove('popup_opened');
-  hidePopup(popup);
 });
 
 closeButtonAdd.addEventListener('click', (e) => {
   e.preventDefault();
   popupAdd.classList.remove('popup-add_opened');
-  hidePopup(popupAdd);
 });
 
 addButton.addEventListener('click', (e) => {
   e.preventDefault();
   popupAdd.classList.add('popup-add_opened');
-  showPopup(popupAdd);
-  popupAdd.style.display = 'flex';
 });
 
 editButton.addEventListener('click', (e) => {
   e.preventDefault();
   popup.classList.add('popup_opened');
-  showPopup(popup);
-  popup.style.display = 'flex';
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
 });
