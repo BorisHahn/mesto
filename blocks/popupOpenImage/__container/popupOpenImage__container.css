@@ -1,0 +1,12 @@
+.popupOpenImage__container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+@media (max-width: 625px) {
+  .popupOpenImage__container {
+    margin-top: 136px;
+  }
+}

@@ -1,7 +1,11 @@
 const popup = document.querySelector('.popup');
 const popupAdd = document.querySelector('.popup-add');
+const popupOpenImage = document.querySelector('.popupOpenImage');
+const popupFullImage = popupOpenImage.querySelector('.popupOpenImage__image');
+const popupFigcaption = popupOpenImage.querySelector('.popupOpenImage__figcaption');
 const closeButton = popup.querySelector('.popup__close');
 const closeButtonAdd = popupAdd.querySelector('.popup-add__close');
+const closeOpenedImage = popupOpenImage.querySelector('.popupOpenImage__close');
 const popupForm = document.querySelector('.popup__container');
 const popupFormAdd = document.querySelector('.popup-add__container');
 const nameInput = popupForm.querySelector('.popup__name-input');
@@ -28,16 +32,16 @@ let initialCards = [
     link: './imges/max-itin-xlhl7rI2M4I-unsplash.jpg'
   },
   {
-    name: 'Эльбрус',
-    link: './imges/elbrus.png'
+    name: 'Фареры',
+    link: './imges/waterfalls.jpg'
   },
   {
-    name: 'Карачаевск',
-    link: './imges/dombay.png'
+    name: 'Юта, США',
+    link: './imges/utah.jpg'
   },
   {
-    name: 'Грозный',
-    link: './imges/karachaevsk.png'
+    name: 'Лофотены',
+    link: './imges/lofoten.jpg'
   }
 ];
 
@@ -56,12 +60,27 @@ function createCards() {
   cards.innerHTML = "";
   initialCards.forEach((item, i) => {
     createCard(item.name, item.link, i);
-  });
+  });  
   initDeleteEvents();
   activeLikes();
+  initImageEvent();
 }
 
 createCards();
+
+function initImageEvent() {
+  const itemImg = document.querySelectorAll('.cards-item__image');
+  itemImg.forEach(elem => {
+    elem.addEventListener('click', (e) => {
+      const target = e.target;
+      popupOpenImage.classList.add('popupOpenImage_opened');
+      popupFullImage.src = target.src;
+      popupFullImage.alt = target.alt;
+      popupFigcaption.textContent = target.alt;
+    });
+  });
+}
+
 
 function formSubmitHandler(e) {
   e.preventDefault(); 
@@ -121,6 +140,11 @@ closeButtonAdd.addEventListener('click', (e) => {
   popupAdd.classList.remove('popup-add_opened');
 });
 
+closeOpenedImage.addEventListener('click', (e) => {
+  e.preventDefault();
+  popupOpenImage.classList.remove('popupOpenImage_opened');
+});
+
 addButton.addEventListener('click', (e) => {
   e.preventDefault();
   popupAdd.classList.add('popup-add_opened');
@@ -132,6 +156,7 @@ editButton.addEventListener('click', (e) => {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
 });
+
 
 popupForm.addEventListener('submit', formSubmitHandler);
 popupFormAdd.addEventListener('submit', addFormSubmitHandler);
