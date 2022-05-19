@@ -17,7 +17,7 @@
     transition: 0.25s;
   }
   @media (max-width: 625px) {
-    .popupOpenImage {
+    .popupOpenImage__close {
       width: 20px;
       right: 0px;
       top: -35px;

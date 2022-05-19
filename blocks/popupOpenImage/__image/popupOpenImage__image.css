@@ -4,9 +4,4 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
-@media (max-width: 625px) {
-  .popupOpenImage__image {
-    width: 240px;
-  }
-}
   

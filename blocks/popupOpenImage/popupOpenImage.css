@@ -11,6 +11,11 @@
     opacity: 0;
     transition: visibility 0.5s, opacity 0.5s ease-in-out;
   }
+  @media (max-width: 625px) {
+    .popupOpenImage {
+      margin: 0 auto;
+    }
+  }
   .popupOpenImage:before {
     background-color: #000000;
     opacity: 0.9;
@@ -22,3 +27,4 @@
     content: "";
     display: block;
   }
+  
