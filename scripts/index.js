@@ -157,7 +157,6 @@ editButton.addEventListener('click', (e) => {
   jobInput.value = profileJob.textContent;
 });
 
-
 popupForm.addEventListener('submit', formSubmitHandler);
 popupFormAdd.addEventListener('submit', addFormSubmitHandler);
   
