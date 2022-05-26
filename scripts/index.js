@@ -95,7 +95,7 @@ function addFormSubmitHandler(e) {
   createCards();
   nameInputAdd.value = "";
   linkInput.value = "";
-  popupAdd.classList.remove('popup_opened');
+  popupAdd.classList.remove('popup-add_opened');
 }
 
 function addCardsItem(inputName, inputLink) {
