@@ -30,7 +30,15 @@
         <p class="footer__author">&copy; 2022. Mesto Russia</p>
       </footer>
     </div>
-      <div class="popup">
+      <template id="card">
+        <li class="card">
+          <img class="card__image" src="" alt="">
+          <h2 class="card__title"></h2>
+          <button class="card__like" type="button" aria-label="Лайк"></button>
+          <button class="card__delete" type="button" aria-label="Удалить"></button>
+        </li>
+      </template> 
+      <div class="popup popup_profile">
         <form class="popup__container">
           <h2 class="popup__title">Редактировать профиль</h2>
           <input class="popup__name-input" type="text" required>
@@ -39,20 +47,20 @@
           <button class="popup__close" aria-label="Закрыть"></button>
         </form>
       </div>
-      <div class="popup-add">
-        <form class="popup-add__container">
-          <h2 class="popup-add__title">Новое место</h2>
-          <input class="popup-add__name-input" type="text" required placeholder="Название">
-          <input class="popup-add__link-input" type="text" required placeholder="Ссылка на картинку">
-          <button class="popup-add__submit" type="submit">Создать</button>
-          <button class="popup-add__close" aria-label="Закрыть"></button>
+      <div class="popup popup_card">
+        <form class="popup__container">
+          <h2 class="popup__title">Новое место</h2>
+          <input class="popup__name-input" type="text" required placeholder="Название">
+          <input class="popup__job-input" type="text" required placeholder="Ссылка на картинку">
+          <button class="popup__submit" type="submit">Создать</button>
+          <button class="popup__close" aria-label="Закрыть"></button>
         </form>
       </div>
-      <div class="popupOpenImage">
-        <figure class="popupOpenImage__container">
-          <img class="popupOpenImage__image" src="./imges/fabio-spinelli-cPpmFa1OiGU-unsplash.jpg" alt="">
-          <figcaption class="popupOpenImage__figcaption"></figcaption>
-          <button class="popupOpenImage__close" aria-label="Закрыть"></button>
+      <div class="popup popup_image">
+        <figure class="popup__container popup__container_image">
+          <img class="popup__image" src="./imges/fabio-spinelli-cPpmFa1OiGU-unsplash.jpg" alt="">
+          <figcaption class="popup__figcaption"></figcaption>
+          <button class="popup__close" aria-label="Закрыть"></button>
         </figure>
       </div>
   <script src="./scripts/index.js"></script>

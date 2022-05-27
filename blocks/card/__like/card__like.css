@@ -1,4 +1,4 @@
-.cards-item__like {
+.card__like {
   width: 22px;
   height: 19px;
   border: none;
@@ -11,6 +11,6 @@
   background-position: center;
   transition: 0.25s ease-in-out;
 }
-.cards-item__like:hover {
+.card__like:hover {
   opacity: 0.5;
 }
