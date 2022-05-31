@@ -77,6 +77,8 @@ createCards(initialCards);
 //универсальная функция закрытия любого попапа
 function closePopup(el) {
   el.classList.remove('popup_opened');
+  document.removeEventListener('keydown', escapeListener);
+  document.removeEventListener('click', closePopupByClickOutside);
 } 
 
 //событие кнопки "закрыть" в попапе добавления новой карточки
@@ -102,6 +104,8 @@ function openPropfilePopup() {
 //универсальная функция открытия любого попапа
 function openPopup(el) {
   el.classList.add('popup_opened');
+  document.addEventListener('keydown', escapeListener);
+  document.addEventListener('click', closePopupByClickOutside);
 } 
 
 //событие кнопки "редактировать" 
@@ -152,4 +156,21 @@ function openImageFullscreen(name, link) {
   imageView.alt = name;
   figcaption.textContent = name;
   openPopup(imagePopup);
+}
+
+//функция закрытия любого попапа кликом по оверлею
+function closePopupByClickOutside(e) {
+    if (e.target.classList.contains('popup')) {
+      closePopup(e.target);
+    }
+}
+
+//функция закрытия любого попапа нажатием ESC
+function closePopupByEsc() {
+  closePopup(document.querySelector('.popup_opened'));
+}
+function escapeListener(e) {
+  if (e.key === 'Escape') {
+    closePopupByEsc();
+  }
 }

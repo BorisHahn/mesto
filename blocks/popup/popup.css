@@ -21,4 +21,5 @@
   left: 0;
   content: "";
   display: block;
+  cursor: pointer;
 }

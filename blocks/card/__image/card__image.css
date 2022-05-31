@@ -4,4 +4,9 @@
   object-fit: cover;
   height: 282px;
   cursor: pointer;
+  transition: ease-in-out 0.25s;
+}
+
+.card__image:hover {
+  transform: scale(1.03);
 }
