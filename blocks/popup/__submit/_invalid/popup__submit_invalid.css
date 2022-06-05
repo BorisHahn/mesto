@@ -1,0 +1,7 @@
+.popup__submit_invalid {
+    background: #E5E5E5;
+    color: black;
+    opacity: 0.2;
+    border: 1px solid;
+    user-select: none;
+}
