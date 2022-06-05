@@ -5,11 +5,15 @@ const nameInput = profilePopup.querySelector('.popup__name-input');
 const jobInput = profilePopup.querySelector('.popup__job-input');
 const popupProfileForm = profilePopup.querySelector('.popup__container');
 const buttonCloseProfilePopup = profilePopup.querySelector('.popup__close');
+const errorNameProfileForm = profilePopup.querySelector('.popup__error-name-input');
+const errorJobProfileForm = profilePopup.querySelector('.popup__error-job-input');
 const cardPopup = document.querySelector('.popup_card');
 const nameCardInput = cardPopup.querySelector('.popup__name-input');
 const linkCardInput = cardPopup.querySelector('.popup__job-input');
 const buttonCloseСardPopup = cardPopup.querySelector('.popup__close');
 const popupAddCardForm = cardPopup.querySelector('.popup__container');
+const errorNameCardForm = cardPopup.querySelector('.popup__error-name-input');
+const errorJobCardForm = cardPopup.querySelector('.popup__error-job-input');
 const imagePopup = document.querySelector('.popup_image');
 const imageView = imagePopup.querySelector('.popup__image');
 const figcaption = imagePopup.querySelector('.popup__figcaption');
@@ -18,6 +22,7 @@ const buttonEdit = document.querySelector('.profile__edit-button');
 const buttonOpenCardPopup = document.querySelector('.profile__add-button');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__description');
+
 
 const initialCards = [
   {
@@ -92,6 +97,14 @@ buttonCloseСardPopup.addEventListener('click', (e) => {
 buttonCloseImageView.addEventListener('click', (e) => {
   e.preventDefault();
   closePopup(imagePopup);
+});
+
+//событие кнопки "закрыть" в попапе редактирования данных профиля
+buttonCloseProfilePopup.addEventListener('click', (e) => {
+  e.preventDefault();
+  closePopup(profilePopup);
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
 });
 
 //функция открытия и добавления текстовых значений в попап редактирования данных профиля
@@ -172,5 +185,36 @@ function closePopupByEsc() {
 function escapeListener(e) {
   if (e.key === 'Escape') {
     closePopupByEsc();
+  }
+}
+
+// проверка валидации инпутов в попапе редактирования профиля
+
+nameInput.addEventListener('change', validationProfileInputs);
+
+// валидация инпутов попапа редактирования профиля
+
+function validationProfileInputs(e) {
+  
+  if (nameInput.value == '') {
+    nameInput.classList.add('popup__name-input_error');
+    errorNameProfileForm.style.display = 'block';
+    errorNameProfileForm.textContent = "Вы пропустили это поле.";
+  }  
+  else if (nameInput.value.length != 0 && nameInput.value.length < 2) {
+    nameInput.classList.add('popup__name-input_error');
+    errorNameProfileForm.style.display = 'block';
+    errorNameProfileForm.textContent = `Минимальное количество символов: 2. Сейчас ${nameInput.value.length} символ.`;
+  }
+  else if (nameInput.value.length > 40) {
+    nameInput.classList.add('popup__name-input_error');
+    errorNameProfileForm.style.display = 'block';
+    errorNameProfileForm.textContent = `Максимальное количество символов: 40. Сейчас ${nameInput.value.length} символ.`;
+  }
+
+  else {
+    nameInput.classList.remove('popup__name-input_error');
+    errorNameProfileForm.style.display = 'none';
+    errorNameProfileForm.value = "";
   }
 }
