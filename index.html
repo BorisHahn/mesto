@@ -39,23 +39,23 @@
         </li>
       </template> 
       <div class="popup popup_profile">
-        <form class="popup__container">
+        <form class="popup__container" novalidate>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input class="popup__name-input" type="text" required>
-          <p class="popup__error-name-input"></p>
-          <input class="popup__job-input" type="text" required>
-          <p class="popup__error-job-input"></p>
+          <input class="popup__name-input popup__input" id="name-input" type="text" minlength="2" maxlength="40" required>
+          <span class="popup__input-error name-input-error"></span>
+          <input class="popup__job-input popup__input" id="job-input" type="text" minlength="2" maxlength="400" required>
+          <span class="popup__input-error job-input-error"></span>
           <button class="popup__submit" type="submit">Сохранить</button>
           <button class="popup__close" aria-label="Закрыть"></button>
         </form>
       </div>
       <div class="popup popup_card">
-        <form class="popup__container">
+        <form class="popup__container" novalidate>
           <h2 class="popup__title">Новое место</h2>
-          <input class="popup__name-input" type="text" required placeholder="Название">
-          <p class="popup__error-name-input"></p>
-          <input class="popup__job-input" type="text" required placeholder="Ссылка на картинку">
-          <p class="popup__error-job-input"></p>
+          <input class="popup__name-input popup__input" id="name-input" type="text" minlength="2" maxlength="30" placeholder="Название" required>
+          <span class="popup__input-error name-input-error"></span>
+          <input class="popup__job-input popup__input" id="url-input" type="url" placeholder="Ссылка на картинку" required>
+          <span class="popup__input-error url-input-error"></span>
           <button class="popup__submit" type="submit">Создать</button>
           <button class="popup__close" aria-label="Закрыть"></button>
         </form>
@@ -68,5 +68,6 @@
         </figure>
       </div>
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 </html>

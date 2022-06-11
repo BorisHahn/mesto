@@ -5,15 +5,11 @@ const nameInput = profilePopup.querySelector('.popup__name-input');
 const jobInput = profilePopup.querySelector('.popup__job-input');
 const popupProfileForm = profilePopup.querySelector('.popup__container');
 const buttonCloseProfilePopup = profilePopup.querySelector('.popup__close');
-const errorNameProfileForm = profilePopup.querySelector('.popup__error-name-input');
-const errorJobProfileForm = profilePopup.querySelector('.popup__error-job-input');
 const cardPopup = document.querySelector('.popup_card');
 const nameCardInput = cardPopup.querySelector('.popup__name-input');
 const linkCardInput = cardPopup.querySelector('.popup__job-input');
 const buttonCloseСardPopup = cardPopup.querySelector('.popup__close');
 const popupAddCardForm = cardPopup.querySelector('.popup__container');
-const errorNameCardForm = cardPopup.querySelector('.popup__error-name-input');
-const errorJobCardForm = cardPopup.querySelector('.popup__error-job-input');
 const imagePopup = document.querySelector('.popup_image');
 const imageView = imagePopup.querySelector('.popup__image');
 const figcaption = imagePopup.querySelector('.popup__figcaption');
@@ -91,6 +87,8 @@ buttonCloseСardPopup.addEventListener('click', (e) => {
   e.preventDefault();
   closePopup(cardPopup);
   popupAddCardForm.reset();
+  hideInputError(cardPopup, nameCardInput);
+  hideInputError(cardPopup, linkCardInput);
 });
 
 //событие кнопки "закрыть" в попапе просмотра изображения
@@ -111,6 +109,8 @@ buttonCloseProfilePopup.addEventListener('click', (e) => {
 function openPropfilePopup() { 
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
+  isValid(profilePopup, nameInput);
+  isValid(profilePopup, jobInput);
   openPopup(profilePopup);
 }
 
@@ -133,7 +133,7 @@ buttonOpenCardPopup.addEventListener('click', (e) => {
 
 //функция по изменению текстовых данных профиля 
 function editProfileInfo(e) {
-  e.preventDefault(); 
+  e.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
   closePopup(profilePopup);
@@ -185,36 +185,5 @@ function closePopupByEsc() {
 function escapeListener(e) {
   if (e.key === 'Escape') {
     closePopupByEsc();
-  }
-}
-
-// проверка валидации инпутов в попапе редактирования профиля
-
-nameInput.addEventListener('change', validationProfileInputs);
-
-// валидация инпутов попапа редактирования профиля
-
-function validationProfileInputs(e) {
-  
-  if (nameInput.value == '') {
-    nameInput.classList.add('popup__name-input_error');
-    errorNameProfileForm.style.display = 'block';
-    errorNameProfileForm.textContent = "Вы пропустили это поле.";
-  }  
-  else if (nameInput.value.length != 0 && nameInput.value.length < 2) {
-    nameInput.classList.add('popup__name-input_error');
-    errorNameProfileForm.style.display = 'block';
-    errorNameProfileForm.textContent = `Минимальное количество символов: 2. Сейчас ${nameInput.value.length} символ.`;
-  }
-  else if (nameInput.value.length > 40) {
-    nameInput.classList.add('popup__name-input_error');
-    errorNameProfileForm.style.display = 'block';
-    errorNameProfileForm.textContent = `Максимальное количество символов: 40. Сейчас ${nameInput.value.length} символ.`;
-  }
-
-  else {
-    nameInput.classList.remove('popup__name-input_error');
-    errorNameProfileForm.style.display = 'none';
-    errorNameProfileForm.value = "";
   }
 }
