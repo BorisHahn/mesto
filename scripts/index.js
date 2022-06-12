@@ -87,8 +87,6 @@ buttonCloseСardPopup.addEventListener('click', (e) => {
   e.preventDefault();
   closePopup(cardPopup);
   popupAddCardForm.reset();
-  hideInputError(cardPopup, nameCardInput);
-  hideInputError(cardPopup, linkCardInput);
 });
 
 //событие кнопки "закрыть" в попапе просмотра изображения
@@ -109,13 +107,12 @@ buttonCloseProfilePopup.addEventListener('click', (e) => {
 function openPropfilePopup() { 
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-  isValid(profilePopup, nameInput);
-  isValid(profilePopup, jobInput);
   openPopup(profilePopup);
 }
 
 //универсальная функция открытия любого попапа
 function openPopup(el) {
+  setEventListeners(el);
   el.classList.add('popup_opened');
   document.addEventListener('keydown', escapeListener);
   document.addEventListener('click', closePopupByClickOutside);
