@@ -18,6 +18,14 @@ const buttonEdit = document.querySelector('.profile__edit-button');
 const buttonOpenCardPopup = document.querySelector('.profile__add-button');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__description');
+const classObj = {
+  formSelector: '.popup__container',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_inactive',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active'
+};
 
 
 const initialCards = [
@@ -80,6 +88,10 @@ function closePopup(el) {
   el.classList.remove('popup_opened');
   document.removeEventListener('keydown', escapeListener);
   document.removeEventListener('click', closePopupByClickOutside);
+  const inputList = Array.from(el.querySelectorAll(classObj.inputSelector));
+  inputList.forEach((inputEl) => {
+  hideInputError(el, inputEl, classObj);
+  })
 } 
 
 //событие кнопки "закрыть" в попапе добавления новой карточки
@@ -112,10 +124,10 @@ function openPropfilePopup() {
 
 //универсальная функция открытия любого попапа
 function openPopup(el) {
-  setEventListeners(el);
   el.classList.add('popup_opened');
   document.addEventListener('keydown', escapeListener);
   document.addEventListener('click', closePopupByClickOutside);
+  setEventListeners(el, classObj);
 } 
 
 //событие кнопки "редактировать" 
@@ -172,12 +184,15 @@ function openImageFullscreen(name, link) {
 function closePopupByClickOutside(e) {
     if (e.target.classList.contains('popup')) {
       closePopup(e.target);
+      e.target.firstElementChild.reset();
     }
 }
 
 //функция закрытия любого попапа нажатием ESC
 function closePopupByEsc() {
-  closePopup(document.querySelector('.popup_opened'));
+  const openedPopup = document.querySelector('.popup_opened');
+  closePopup(openedPopup);
+  openedPopup.firstElementChild.reset();
 }
 function escapeListener(e) {
   if (e.key === 'Escape') {
