@@ -43,19 +43,30 @@
       return !inputElement.validity.valid;
     })
   }; 
+
+  const activateButton = (buttonElement, classObj) => {
+    if (buttonElement == null) 
+      return;
+    buttonElement.classList.remove(classObj.inactiveButtonClass);
+    buttonElement.removeAttribute('disabled');
+    };
   
+  const diactivateButton = (buttonElement, classObj) => {
+    buttonElement.classList.add(classObj.inactiveButtonClass);
+    buttonElement.setAttribute('disabled', true);
+  };
+
   const toggleButtonState = (inputList, buttonElement, classObj) => {
     // Если есть хотя бы один невалидный инпут
     if (hasInvalidInput(inputList)) {
       // сделай кнопку неактивной
-      buttonElement.classList.add(classObj.inactiveButtonClass);
+      diactivateButton(buttonElement, classObj);
     } else {
       // иначе сделай кнопку активной
-      buttonElement.classList.remove(classObj.inactiveButtonClass);
+      activateButton(buttonElement, classObj);
     }
   }; 
 
-  
 //Пусть слушатель событий добавится всем полям ввода внутри формы.
 const setEventListeners = (formElement, classObj) => {
     // Находим все поля внутри формы,

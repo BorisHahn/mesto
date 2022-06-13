@@ -1,3 +1,4 @@
+const popup = document.querySelector('.popup');
 const cardsContainer = document.querySelector('.cards');
 const cardTemplate = document.querySelector('#card').content;
 const profilePopup = document.querySelector('.popup_profile');
@@ -91,7 +92,7 @@ function closePopup(el) {
   const inputList = Array.from(el.querySelectorAll(classObj.inputSelector));
   inputList.forEach((inputEl) => {
   hideInputError(el, inputEl, classObj);
-  })
+  });
 } 
 
 //событие кнопки "закрыть" в попапе добавления новой карточки
@@ -127,7 +128,7 @@ function openPopup(el) {
   el.classList.add('popup_opened');
   document.addEventListener('keydown', escapeListener);
   document.addEventListener('click', closePopupByClickOutside);
-  setEventListeners(el, classObj);
+  diactivateButton(popup.querySelector('.popup__submit'), classObj);
 } 
 
 //событие кнопки "редактировать" 
@@ -182,18 +183,22 @@ function openImageFullscreen(name, link) {
 
 //функция закрытия любого попапа кликом по оверлею
 function closePopupByClickOutside(e) {
-    if (e.target.classList.contains('popup')) {
-      closePopup(e.target);
+  if (e.target.classList.contains('popup')) {
+    closePopup(e.target);
+    if (typeof e.target.firstElementChild.reset === 'function') 
       e.target.firstElementChild.reset();
-    }
+  }
 }
+
 
 //функция закрытия любого попапа нажатием ESC
 function closePopupByEsc() {
   const openedPopup = document.querySelector('.popup_opened');
   closePopup(openedPopup);
-  openedPopup.firstElementChild.reset();
+  if (typeof openedPopup.firstElementChild.reset === 'function') 
+    openedPopup.firstElementChild.reset();
 }
+  
 function escapeListener(e) {
   if (e.key === 'Escape') {
     closePopupByEsc();

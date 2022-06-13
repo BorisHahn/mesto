@@ -1,5 +1,6 @@
 .popup__name-input {
-  margin: 0 auto 30px;
+  margin: 0 auto 35px;
+  padding: 0;
   display: block;
   width: 84%;
   font-family: "Inter";
