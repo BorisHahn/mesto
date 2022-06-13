@@ -28,34 +28,6 @@ const classObj = {
   errorClass: 'popup__input-error_active'
 };
 
-
-const initialCards = [
-  {
-    name: 'БМВ R9T',
-    link: './imges/fabio-spinelli-cPpmFa1OiGU-unsplash.jpg'
-  },
-  {
-    name: 'Реймс',
-    link: './imges/petr-stradal-VwgQxs1-xLM-unsplash.jpg'
-  },
-  {
-    name: 'Ямаха R6',
-    link: './imges/max-itin-xlhl7rI2M4I-unsplash.jpg'
-  },
-  {
-    name: 'Фареры',
-    link: './imges/waterfalls.jpg'
-  },
-  {
-    name: 'Юта, США',
-    link: './imges/utah.jpg'
-  },
-  {
-    name: 'Лофотены',
-    link: './imges/lofoten.jpg'
-  }
-];
-
 //функция создания карточки и навешивание event для лайка, удаления и открытия картинки
 function createCard(name, link) {
   const card = cardTemplate.querySelector('.card').cloneNode(true);
@@ -89,28 +61,20 @@ function closePopup(el) {
   el.classList.remove('popup_opened');
   document.removeEventListener('keydown', escapeListener);
   document.removeEventListener('click', closePopupByClickOutside);
-  const inputList = Array.from(el.querySelectorAll(classObj.inputSelector));
-  inputList.forEach((inputEl) => {
-  hideInputError(el, inputEl, classObj);
-  });
 } 
 
 //событие кнопки "закрыть" в попапе добавления новой карточки
 buttonCloseСardPopup.addEventListener('click', (e) => {
-  e.preventDefault();
   closePopup(cardPopup);
-  popupAddCardForm.reset();
 });
 
 //событие кнопки "закрыть" в попапе просмотра изображения
 buttonCloseImageView.addEventListener('click', (e) => {
-  e.preventDefault();
   closePopup(imagePopup);
 });
 
 //событие кнопки "закрыть" в попапе редактирования данных профиля
 buttonCloseProfilePopup.addEventListener('click', (e) => {
-  e.preventDefault();
   closePopup(profilePopup);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
@@ -128,17 +92,27 @@ function openPopup(el) {
   el.classList.add('popup_opened');
   document.addEventListener('keydown', escapeListener);
   document.addEventListener('click', closePopupByClickOutside);
-  diactivateButton(popup.querySelector('.popup__submit'), classObj);
 } 
 
 //событие кнопки "редактировать" 
 buttonEdit.addEventListener('click', (e) => {
   openPropfilePopup();
+  const inputList = Array.from(popupProfileForm.querySelectorAll(classObj.inputSelector));
+  inputList.forEach((inputEl) => {
+  hideInputError(popupProfileForm, inputEl, classObj);
+  diactivateButton(popupProfileForm.querySelector('.popup__submit'), classObj);
+  });
 });
 
 //событие кнопки "добавить карточку" 
 buttonOpenCardPopup.addEventListener('click', (e) => {
   openPopup(cardPopup);
+  popupAddCardForm.reset();
+  const inputList = Array.from(popupAddCardForm.querySelectorAll(classObj.inputSelector));
+  inputList.forEach((inputEl) => {
+  hideInputError(popupAddCardForm, inputEl, classObj);
+  diactivateButton(popupAddCardForm.querySelector('.popup__submit'), classObj);
+  });
 });
 
 //функция по изменению текстовых данных профиля 
@@ -185,18 +159,13 @@ function openImageFullscreen(name, link) {
 function closePopupByClickOutside(e) {
   if (e.target.classList.contains('popup')) {
     closePopup(e.target);
-    if (typeof e.target.firstElementChild.reset === 'function') 
-      e.target.firstElementChild.reset();
   }
 }
-
 
 //функция закрытия любого попапа нажатием ESC
 function closePopupByEsc() {
   const openedPopup = document.querySelector('.popup_opened');
   closePopup(openedPopup);
-  if (typeof openedPopup.firstElementChild.reset === 'function') 
-    openedPopup.firstElementChild.reset();
 }
   
 function escapeListener(e) {

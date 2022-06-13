@@ -41,12 +41,12 @@
       <div class="popup popup_profile">
         <form class="popup__container" novalidate>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input class="popup__name-input popup__input" id="name-input" type="text" minlength="2" maxlength="40" autocomplete="off" required>
+          <input class="popup__name-input popup__input" id="name-input" type="text" placeholder="Имя" minlength="2" maxlength="40" autocomplete="off" required>
           <span class="popup__input-error name-input-error"></span>
-          <input class="popup__job-input popup__input" id="job-input" type="text" minlength="2" maxlength="400" autocomplete="off" required>
+          <input class="popup__job-input popup__input" id="job-input" type="text" placeholder="Профессия" minlength="2" maxlength="200" autocomplete="off" required>
           <span class="popup__input-error job-input-error"></span>
           <button class="popup__submit" type="submit">Сохранить</button>
-          <button class="popup__close" aria-label="Закрыть"></button>
+          <button class="popup__close" type="button" aria-label="Закрыть"></button>
         </form>
       </div>
       <div class="popup popup_card">
@@ -57,16 +57,17 @@
           <input class="popup__job-input popup__input" id="url-input" type="url" placeholder="Ссылка на картинку" autocomplete="off" required>
           <span class="popup__input-error url-input-error"></span>
           <button class="popup__submit" type="submit">Создать</button>
-          <button class="popup__close" aria-label="Закрыть"></button>
+          <button class="popup__close" type="button" aria-label="Закрыть"></button>
         </form>
       </div>
       <div class="popup popup_image">
         <figure class="popup__container popup__container_image">
           <img class="popup__image" src="./imges/fabio-spinelli-cPpmFa1OiGU-unsplash.jpg" alt="">
           <figcaption class="popup__figcaption"></figcaption>
-          <button class="popup__close" aria-label="Закрыть"></button>
+          <button class="popup__close" type="button" aria-label="Закрыть"></button>
         </figure>
       </div>
+  <script src="./scripts/card.js"></script>
   <script src="./scripts/index.js"></script>
   <script src="./scripts/validate.js"></script>
 </body>
