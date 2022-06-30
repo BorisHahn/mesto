@@ -1,5 +1,5 @@
 import {initialCards, Card} from './card.js';
-import {classObj} from './validate.js';
+import {classObj, hideInputError, diactivateButton} from './validate.js';
 
 const popup = document.querySelector('.popup');
 const cardsContainer = document.querySelector('.cards');

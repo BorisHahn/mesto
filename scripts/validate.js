@@ -115,4 +115,4 @@ const enableValidation = (classObj) => {
 enableValidation(classObj); 
 
 
-export {classObj, enableValidation};
+export {classObj, hideInputError, diactivateButton};
