@@ -1,3 +1,12 @@
+const classObj = {
+  formSelector: '.popup__container',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_inactive',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active'
+};
+
 // Функция, которая добавляет класс с ошибкой
   const showInputError = (formElement, inputElement, errorMessage, classObj) => {
     // Находим элемент ошибки внутри самой функции
@@ -104,3 +113,6 @@ const enableValidation = (classObj) => {
 
 // Вызовем функцию
 enableValidation(classObj); 
+
+
+export {classObj, enableValidation};

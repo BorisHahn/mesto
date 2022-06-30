@@ -1,5 +1,5 @@
-import {initialCards, Card} from './card';
-
+import {initialCards, Card} from './card.js';
+import {classObj} from './validate.js';
 
 const popup = document.querySelector('.popup');
 const cardsContainer = document.querySelector('.cards');
@@ -21,20 +21,6 @@ const buttonEdit = document.querySelector('.profile__edit-button');
 const buttonOpenCardPopup = document.querySelector('.profile__add-button');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__description');
-const classObj = {
-  formSelector: '.popup__container',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit',
-  inactiveButtonClass: 'popup__submit_inactive',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_active'
-};
-
-initialCards.forEach((item) => {
-  const card = new Card(item.name, item.link);
-  const cardElement = card.generateCard();
-  cardsContainer.prepend(cardElement);
-}); 
 
 //функция создания карточки и навешивание event для лайка, удаления и открытия картинки
 // function createCard(name, link) {
@@ -50,19 +36,20 @@ initialCards.forEach((item) => {
 // }
 
 //функция добавления карточки в разметку
-// function renderCard(name, link) {
-//   const result = createCard(name, link);
-//   cardsContainer.prepend(result);
-// }
+function renderCard(item) {
+  const card = new Card(item, "#card");
+  const cardElement = card.generateCard();
+  cardsContainer.prepend(cardElement);
+}
 
 //применяем функцию создания карточки для каждого элемента массива
-// function createCards(array) {
-//   array.forEach(item => {
-//     renderCard(item);
-//   });
-// }
+function createCards(array) {
+  array.forEach(item => {
+    renderCard(item);
+  });
+}
 
-// createCards(initialCards);
+createCards(initialCards);
 
 //универсальная функция закрытия любого попапа
 function closePopup(el) {
@@ -156,12 +143,12 @@ popupAddCardForm.addEventListener('submit', addNewCard);
 // }
 
 //функция открытия увеличенного изображения
-// function openImageFullscreen(name, link) {
-//   imageView.src = link;
-//   imageView.alt = name;
-//   figcaption.textContent = name;
-//   openPopup(imagePopup);
-// }
+function openImageFullscreen(name, link) {
+  imageView.src = link;
+  imageView.alt = name;
+  figcaption.textContent = name;
+  openPopup(imagePopup);
+}
 
 //функция закрытия любого попапа кликом по оверлею
 function closePopupByClickOutside(e) {
@@ -181,3 +168,5 @@ function escapeListener(e) {
     closePopupByEsc();
   }
 }
+
+export {openImageFullscreen};

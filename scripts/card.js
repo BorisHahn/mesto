@@ -1,3 +1,5 @@
+import {openImageFullscreen} from './index.js';
+
 const initialCards = [
     {
       name: 'БМВ R9T',
@@ -26,14 +28,15 @@ const initialCards = [
   ];
 
 class Card {
-  constructor(data) {
+  constructor(data, cardSelector) {
     this._name = data.name;
     this._link = data.link;
+    this._cardSelector = cardSelector;
   }
 
   _getTemplate() {
     const cardTemplate = document
-    .querySelector('#card')
+    .querySelector(this._cardSelector)
     .content
     .querySelector('.card')
     .cloneNode(true);
@@ -50,9 +53,9 @@ class Card {
   }
 
   _setEventListeners() {
-    this._element.querySelector('.card__like').addEventListener('click', () => {this._activeLikes()});
-    this._element.querySelector('.card__delete').addEventListener('click', () => {this._deleteCard()});
-    this._element.querySelector('.card__image').addEventListener('click', () => openImageFullscreen(this._name, this._link));
+    this._element.querySelector('.card__like').addEventListener('click', (event) => {this._activeLikes(event)});
+    this._element.querySelector('.card__delete').addEventListener('click', (event) => {this._deleteCard(event)});
+    this._element.querySelector('.card__image').addEventListener('click', () => {this._openImgPopup()});
   }
 
   _activeLikes(event) {
@@ -63,12 +66,10 @@ class Card {
     event.target.closest(".card").remove();
   }
 
-  _openImageFullscreen() {
-    imageView.src = this._link;
-    imageView.alt = this._name;
-    figcaption.textContent = this._name;
-    openPopup(imagePopup);
+  _openImgPopup() {
+    openImageFullscreen(this._name, this._link);
   }
+  
 }
 
 export {initialCards, Card};
