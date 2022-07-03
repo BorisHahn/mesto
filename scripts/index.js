@@ -94,14 +94,14 @@ function openPopup(el) {
 //событие кнопки "редактировать" 
 buttonEdit.addEventListener('click', (e) => {
   openPropfilePopup();
-  profileValidator.disableValidation();
+  profileValidator.resetValidation();
 });
 
 //событие кнопки "добавить карточку"
 buttonOpenCardPopup.addEventListener('click', (e) => {
   openPopup(cardPopup);
   popupAddCardForm.reset();
-  cardValidator.disableValidation();
+  cardValidator.resetValidation();
 });
 
 //функция по изменению текстовых данных профиля 
