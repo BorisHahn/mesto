@@ -52,7 +52,7 @@ function addCard(childElement) {
 function createCards(array) {
   array.forEach(item => {
     renderCard(item);
-    addCard(renderCard(item));
+    addCard( renderCard(item) );
   });
 }
 
@@ -123,7 +123,7 @@ function addNewCard(e) {
   e.preventDefault();
   const data = {link: linkCardInput.value, name: nameCardInput.value}
   renderCard(data);
-  addCard(renderCard(data));
+  addCard( renderCard(data) );
   popupAddCardForm.reset();
   closePopup(cardPopup);
 }

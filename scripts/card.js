@@ -28,7 +28,7 @@ class Card {
 
   _setEventListeners() {
     this._element.querySelector('.card__like').addEventListener('click', (event) => {this._activeLikes(event)});
-    this._element.querySelector('.card__delete').addEventListener('click', (event) => {this._deleteCard(event)});
+    this._element.querySelector('.card__delete').addEventListener('click', () => {this._deleteCard()});
     this._element.querySelector('.card__image').addEventListener('click', () => {this._openImgPopup()});
   }
 
@@ -48,5 +48,3 @@ class Card {
 }
 
 export default Card;
-
-//test
