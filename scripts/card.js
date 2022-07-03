@@ -1,4 +1,4 @@
-import openImageFullscreen from './index.js';
+import openImageFullscreen from 'index.js';
 
 class Card {
   constructor(data, cardSelector) {
