@@ -51,7 +51,6 @@ function addCard(childElement) {
 //применяем функцию рендера первых 6 карточек 
 function createCards(array) {
   array.forEach(item => {
-    renderCard(item);
     addCard( renderCard(item) );
   });
 }
@@ -122,7 +121,6 @@ popupProfileForm.addEventListener('submit', editProfileInfo);
 function addNewCard(e) {
   e.preventDefault();
   const data = {link: linkCardInput.value, name: nameCardInput.value}
-  renderCard(data);
   addCard( renderCard(data) );
   popupAddCardForm.reset();
   closePopup(cardPopup);
