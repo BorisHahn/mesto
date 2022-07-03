@@ -2,7 +2,6 @@ import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 import initialCards from './card-data.js';
 
-const popup = document.querySelector('.popup');
 const cardsContainer = document.querySelector('.cards');
 const profilePopup = document.querySelector('.popup_profile');
 const nameInput = profilePopup.querySelector('.popup__name-input');
