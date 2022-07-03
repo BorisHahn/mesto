@@ -37,17 +37,23 @@ profileValidator.enableValidation();
 const cardValidator = new FormValidator(classObj, cardPopup);
 cardValidator.enableValidation();
 
-//функция добавления карточки в разметку
+//функция создания прототипа карточки
 function renderCard(item) {
   const card = new Card(item, "#card");
   const cardElement = card.generateCard();
-  cardsContainer.prepend(cardElement);
+  return cardElement;
 }
 
-//применяем функцию создания карточки для каждого элемента массива
+//функция добавления карточки в разметку
+function addCard(childElement) {
+  cardsContainer.prepend(childElement);
+}
+
+//применяем функцию рендера первых 6 карточек 
 function createCards(array) {
   array.forEach(item => {
     renderCard(item);
+    addCard(renderCard(item));
   });
 }
 
@@ -73,8 +79,6 @@ buttonCloseImageView.addEventListener('click', (e) => {
 //событие кнопки "закрыть" в попапе редактирования данных профиля
 buttonCloseProfilePopup.addEventListener('click', (e) => {
   closePopup(profilePopup);
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
 });
 
 //функция открытия и добавления текстовых значений в попап редактирования данных профиля
@@ -120,6 +124,7 @@ function addNewCard(e) {
   e.preventDefault();
   const data = {link: linkCardInput.value, name: nameCardInput.value}
   renderCard(data);
+  addCard(renderCard(data));
   popupAddCardForm.reset();
   closePopup(cardPopup);
 }
