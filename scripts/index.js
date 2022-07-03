@@ -1,6 +1,6 @@
-import Card from 'Card.js';
-import FormValidator from 'FormValidator.js';
-import initialCards from 'card-data.js';
+import Card from './Card.js';
+import FormValidator from './FormValidator';
+import initialCards from './card-data.js';
 
 const popup = document.querySelector('.popup');
 const cardsContainer = document.querySelector('.cards');
