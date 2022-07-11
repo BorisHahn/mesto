@@ -1,10 +1,10 @@
-import openImageFullscreen from './index.js';
 
 class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -27,9 +27,9 @@ class Card {
   }
 
   _setEventListeners() {
-    this._element.querySelector('.card__like').addEventListener('click', (event) => {this._activeLikes(event)});
-    this._element.querySelector('.card__delete').addEventListener('click', () => {this._deleteCard()});
-    this._element.querySelector('.card__image').addEventListener('click', () => {this._openImgPopup()});
+    this._element.querySelector('.card__like').addEventListener('click', (event) => this._activeLikes(event));
+    this._element.querySelector('.card__delete').addEventListener('click', () => this._deleteCard());
+    this._element.querySelector('.card__image').addEventListener('click', () => this._handleCardClick());
   }
 
   _activeLikes(event) {
