@@ -18,18 +18,20 @@ class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+    this._cardImage = this._element.querySelector('.card__image');
+    this._likeButton = this._element.querySelector('.card__like');
+    this._deleteButton = this._element.querySelector('.card__delete');
     this._setEventListeners();
-    const cardImage = this._element.querySelector('.card__image');
-    cardImage.src = this._link;
-    cardImage.alt = this._name;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
     this._element.querySelector('.card__title').textContent = this._name;
     return this._element;
   }
 
   _setEventListeners() {
-    this._element.querySelector('.card__like').addEventListener('click', (event) => this._activeLikes(event));
-    this._element.querySelector('.card__delete').addEventListener('click', () => this._deleteCard());
-    this._element.querySelector('.card__image').addEventListener('click', () => this._handleCardClick());
+    this._likeButton.addEventListener('click', (event) => this._activeLikes(event));
+    this._deleteButton.addEventListener('click', () => this._deleteCard());
+    this._cardImage.addEventListener('click', () => this._handleCardClick());
   }
 
   _activeLikes(event) {

@@ -30,10 +30,13 @@ const cardValidator = new FormValidator(classObj, cardPopup);
 cardValidator.enableValidation();
 
 const popupWithImage = new PopupWithImage('.popup_image');
+popupWithImage.setEventListeners();
 
 const popupProfile = new PopupWithForm('.popup_profile', editProfileInfo);
+popupProfile.setEventListeners();
 
 const popupCard = new PopupWithForm('.popup_card', addNewCard);
+popupCard.setEventListeners();
 
 const userInfo = new UserInfo({
   nameSelector: '.profile__name',
@@ -62,18 +65,14 @@ function openPropfilePopup() {
 }
 
 //функция по изменению текстовых данных профиля 
-function editProfileInfo(e) {
-  e.preventDefault();
-  const data = popupProfile._getInputValues();
-  userInfo.setUserInfo(data.name, data.job);
+function editProfileInfo(result) {
+  userInfo.setUserInfo(result);
   popupProfile.close();
 }
 
 //функция добавления новой карточки
-function addNewCard(e) {
-  e.preventDefault();
-  const data = popupCard._getInputValues();
-  addCard( renderCard(data) );
+function addNewCard(result) {
+  createCards.addItem(result);
   popupCard.close();
 }
 
