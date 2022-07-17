@@ -8,7 +8,7 @@
   border: 2px solid #FFFFFF;
   border-radius: 2px;
   box-sizing: border-box;
-  background-image: url('../../../../imges/addImg.svg');
+  background-image: url('../../../images/addImg.svg');
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;

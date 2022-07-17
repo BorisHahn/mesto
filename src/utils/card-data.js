@@ -1,9 +1,9 @@
-import bmwR9T from '../imges/fabio-spinelli-cPpmFa1OiGU-unsplash.jpg';
-import reims from '../imges/petr-stradal-VwgQxs1-xLM-unsplash.jpg';
-import yamahaR6 from '../imges/max-itin-xlhl7rI2M4I-unsplash.jpg';
-import farer from '../imges/waterfalls.jpg';
-import utah from '../imges/utah.jpg';
-import lofoten from '../imges/lofoten.jpg';
+import bmwR9T from '../images/fabio-spinelli-cPpmFa1OiGU-unsplash.jpg';
+import reims from '../images/petr-stradal-VwgQxs1-xLM-unsplash.jpg';
+import yamahaR6 from '../images/max-itin-xlhl7rI2M4I-unsplash.jpg';
+import farer from '../images/waterfalls.jpg';
+import utah from '../images/utah.jpg';
+import lofoten from '../images/lofoten.jpg';
 
 const initialCards = [
     {
