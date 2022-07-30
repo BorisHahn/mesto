@@ -13,13 +13,18 @@
       </header>
       <main class="main">
         <section class="profile">
-          <img class="profile__avatar" src="<%=require('./images/profileImg.jpg')%>" alt="Картинка профиля">
+          <div class="profile__update-avatar">
+            <img class="profile__avatar" src="<%=require('./images/profileImg.jpg')%>" alt="Картинка профиля">
+            <div class="profile__overlay">
+              <img class="profile__edit-icon" src="<%=require('./images/pen.svg')%>" alt="Картинка редактирования">
+            </div>
+          </div>
           <div class="profile__info">
             <div class="profile__info-title">
-              <h1 class="profile__name">Жак-Ив-Кусто</h1>
+              <h1 class="profile__name"></h1>
               <button class="profile__edit-button" aria-label="Редактировать"></button>
             </div>
-            <h2 class="profile__description">Исследователь океана</h2>
+            <h2 class="profile__description"></h2>
           </div>
           <button class="profile__add-button" aria-label="Добавить"></button>
         </section>
@@ -33,7 +38,10 @@
         <li class="card">
           <img class="card__image" src="." alt="">
           <h2 class="card__title"></h2>
-          <button class="card__like" type="button" aria-label="Лайк"></button>
+          <div class="card__like-bar">
+            <button class="card__like" type="button" aria-label="Лайк"></button>
+            <span class="card__like-counter">1</span>
+          </div>
           <button class="card__delete" type="button" aria-label="Удалить"></button>
         </li>
       </template> 
@@ -42,7 +50,7 @@
           <h2 class="popup__title">Редактировать профиль</h2>
           <input class="popup__name-input popup__input" id="name-input" name="name" type="text" placeholder="Имя" minlength="2" maxlength="40" autocomplete="off" required>
           <span class="popup__input-error name-input-error"></span>
-          <input class="popup__job-input popup__input" id="job-input" name="job" type="text" placeholder="Профессия" minlength="2" maxlength="200" autocomplete="off" required>
+          <input class="popup__job-input popup__input" id="job-input" name="description" type="text" placeholder="Профессия" minlength="2" maxlength="200" autocomplete="off" required>
           <span class="popup__input-error job-input-error"></span>
           <button class="popup__submit" type="submit">Сохранить</button>
           <button class="popup__close" type="button" aria-label="Закрыть"></button>
@@ -66,5 +74,22 @@
           <button class="popup__close" type="button" aria-label="Закрыть"></button>
         </figure>
       </div>
+      <div class="popup popup_confirm">
+        <div class="popup__container popup__container_confirm">
+          <h2 class="popup__title popup__title_confirm">Вы уверены?</h2>
+          <button class="popup__submit popup__submit_confirm" type="button">Да</button>
+          <button class="popup__close" type="button" aria-label="Закрыть"></button>
+        </div>
+      </div>
+      <div class="popup popup_update-avatar">
+        <form class="popup__container popup__container_update-avatar">
+          <h2 class="popup__title">Обновить аватар</h2>
+          <input class="popup__link-input popup__input" id="url-input" name="ava-link" type="url" placeholder="Ссылка на картинку" autocomplete="off" required>
+          <span class="popup__input-error url-input-error"></span>
+          <button class="popup__submit" type="submit">Сохранить</button>
+          <button class="popup__close" type="button" aria-label="Закрыть"></button>
+        </form>
+      </div>
+      
 </body>
 </html>

@@ -4,6 +4,9 @@ class Section {
     this._renderer = data.renderer;
     this._cardsContainer = document.querySelector(selector);
   }
+  setItems(items) {
+    this._items = items;
+  }
 
   addItem(item) {
     this._cardsContainer.prepend(this._renderer(item));
