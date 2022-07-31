@@ -12,13 +12,7 @@ class Api {
         } else {
           return Promise.reject(`Ошибка: ${res.status}`);
         }
-      })
-      .then((result) => {
-        return result;
-      })
-      .catch((err) => {
-        console.log(err); 
-      })
+      });
   }
 
   getCards() {
@@ -29,13 +23,7 @@ class Api {
         } else {
           return Promise.reject(`Ошибка: ${res.status}`);
         }
-      })
-      .then((result) => {
-        return result;
-      })
-      .catch((err) => {
-        console.log(err); 
-      })
+      });
   }
 
   setUserData(body) {
@@ -47,13 +35,7 @@ class Api {
         } else {
           return Promise.reject(`Ошибка: ${res.status}`);
         }
-      })
-      .then((result) => {
-        return result;
-      })
-      .catch((err) => {
-        console.log(err); 
-      })
+      });
   }
 
   addNewCard(body) {
@@ -65,13 +47,7 @@ class Api {
         } else {
           return Promise.reject(`Ошибка: ${res.status}`);
         }
-      })
-      .then((result) => {
-        return result;
-      })
-      .catch((err) => {
-        console.log(err); 
-      })
+      });
   }
 
   deleteCard(id) {
@@ -83,13 +59,43 @@ class Api {
         } else {
           return Promise.reject(`Ошибка: ${res.status}`);
         }
-      })
-      .then((result) => {
-        return result;
-      })
-      .catch((err) => {
-        console.log(err); 
-      })
+      });
+  }
+
+  likeCard(id) {
+    const config = Object.assign({method: 'PUT'}, this._config);
+    return fetch(this._baseUrl + `/cards/likes/${id}`, config)
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return Promise.reject(`Ошибка: ${res.status}`);
+        }
+      });
+  }
+
+  dislikeCard(id) {
+    const config = Object.assign({method: 'DELETE'}, this._config);
+    return fetch(this._baseUrl + `/cards/likes/${id}`, config)
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return Promise.reject(`Ошибка: ${res.status}`);
+        }
+      });
+  }
+
+  setNewAvatar(body) {
+    const config = Object.assign({body: JSON.stringify(body), method: 'PATCH'}, this._config);
+    return fetch(this._baseUrl + '/users/me/avatar', config)
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return Promise.reject(`Ошибка: ${res.status}`);
+        }
+      });
   }
 }
 

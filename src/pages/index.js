@@ -47,12 +47,13 @@ popupCard.setEventListeners();
 
 const popupConfirm = new PopupConfirm('.popup_confirm');
 
-const updateAvatar = new PopupWithForm('.popup_update-avatar');
+const updateAvatar = new PopupWithForm('.popup_update-avatar', setNewAvatar);
 updateAvatar.setEventListeners();
 
 const userInfo = new UserInfo({
   nameSelector: '.profile__name',
-  descriptionSelector: '.profile__description'
+  descriptionSelector: '.profile__description',
+  profileAvatar: '.profile__avatar',
 });
 
 const createCards = new Section({
@@ -60,14 +61,22 @@ const createCards = new Section({
   renderer: renderCard
 }, '.cards');
 
-api.getUserData().then((result) => {
-  userInfo.setUserInfo({name: result.name, description: result.about, profileId: result._id});
-  api.getCards().then((studentsCards) => {
-    studentsCards.reverse().forEach((elem) => {
-      createCards.addItem(elem);
-    });
+api.getUserData()
+  .then((result) => {
+    userInfo.setUserInfo({name: result.name, description: result.about, profileId: result._id, profileAvatar: result.avatar});
+    api.getCards()
+      .then((studentsCards) => {
+        studentsCards.reverse().forEach((elem) => {
+          createCards.addItem(elem);
+        })
+      })
+      .catch((err) => {
+        console.error(err); 
+      });
+  })
+  .catch((err) => {
+    console.error(err);
   });
-});
 
 
 // //функция создания прототипа карточки
@@ -77,7 +86,9 @@ function renderCard(item) {
     handleCardClick: () => popupWithImage.open(item),
     popupConfirm: popupConfirm, 
     profileId: userInfo.getUserInfo().profileId,
-    deleteCard: (id) => api.deleteCard(id)
+    deleteCard: (id) => api.deleteCard(id),
+    likeCard: (id) => api.likeCard(id),
+    dislikeCard: (id) => api.dislikeCard(id),
   });
   const cardElement = card.generateCard();
   return cardElement;
@@ -93,20 +104,41 @@ function openPropfilePopup() {
 
 //функция по изменению текстовых данных профиля 
 function editProfileInfo(result) {
-  userInfo.setUserInfo(result);
-  api.setUserData({name: result.name, about: result.description});
-  popupProfile.close();
+  popupProfile.setLoadingState(true);
+  api.setUserData({name: result.name, about: result.description})
+    .then(() => {
+      userInfo.setUserInfo(result);
+      popupProfile.close();
+    })
+    .catch((err) => {
+      console.error(err); 
+    })
+    .finally(() => popupProfile.setLoadingState(false));
 }
-
-
-// api.addNewCard(body).then((card) => addNewCard({name: card.name, link: card.link}));
 
 //функция добавления новой карточки
 function addNewCard(result) {
-  api.addNewCard(result).then((data) => {
+  api.addNewCard(result)
+  .then((data) => {
     createCards.addItem(data);
     popupCard.close();
+  })
+  .catch((err) => {
+    console.error(err); 
   });
+}
+//функция обновления аватара
+function setNewAvatar(data) {
+  updateAvatar.setLoadingState(true);
+  api.setNewAvatar({avatar: data.avatar})
+    .then((res) => {
+      userInfo.setUserInfo({name: res.name, description: res.about, profileId: res._id, profileAvatar: res.avatar});
+      updateAvatar.close();
+    })
+    .catch((err) => {
+      console.error(err); 
+    })
+    .finally(() => updateAvatar.setLoadingState(false));
 }
 
 //событие кнопки "редактировать" 

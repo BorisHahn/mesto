@@ -6,6 +6,7 @@ class PopupWithForm extends Popup {
     this._submitFunction = submitFunction;
     this._popupForm = this._popupElement.querySelector('.popup__container');
     this._inputList = Array.from(this._popupForm.querySelectorAll('.popup__input'));
+    this._submitButton = this._popupForm.querySelector('[type="submit"]');
   }
   _getInputValues() {
     const result = {};
@@ -26,6 +27,17 @@ class PopupWithForm extends Popup {
   close() {
     super.close();
     this._popupForm.reset();
+  }
+
+  setLoadingState(enabled) {
+    if (enabled) {
+      this._submitButton.innerText = this._submitButton.getAttribute('loading-text');
+      this._submitButton.setAttribute('disabled', 'true');
+    } else {
+      this._submitButton.innerText = this._submitButton.getAttribute('default-text');
+      if (this._submitButton.hasAttribute('disabled'))
+        this._submitButton.removeAttribute('disabled');
+    }
   }
 }
 
