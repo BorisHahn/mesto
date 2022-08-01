@@ -9,11 +9,10 @@ class Card {
     this._cardId = data._id;
     this._cardSelector = options.cardSelector;
     this._handleCardClick = options.handleCardClick;
+    this._handleDeleteClick = options.handleDeleteClick;
+    this._handleDislikeCard = options.handleDislikeCard;
+    this._handleLikeCard = options.handleLikeCard;
     this._profileId = options.profileId;
-    this._popupConfirm = options.popupConfirm;
-    this._apiDeleteCallback = options.deleteCard;
-    this._apiLikeCard = options.likeCard;
-    this._apiDislikeCard = options.dislikeCard;
   }
 
   _getTemplate() {
@@ -48,54 +47,30 @@ class Card {
   _setEventListeners() {
     this._likeButton.addEventListener('click', () => {
       if (this._likeButton.classList.contains('card__like_active')) {
-        this._apiDislikeCard(this._cardId)
-          .then((result) => {
-            this._diactiveLikes(result);
-          })
-          .catch((err) => {
-            console.error(err); 
-          });
+        this._handleDislikeCard();
       } else {
-        this._apiLikeCard(this._cardId)
-          .then((result) => {
-            this._activeLikes(result);
-          })
-          .catch((err) => {
-            console.error(err); 
-          });
+        this._handleLikeCard();
       }
     });
-    this._deleteButton.addEventListener('click', () => {
-      this._popupConfirm.open();
-      this._popupConfirm.setEventListeners(() => {
-        this._apiDeleteCallback(this._cardId)
-          .then(() => {
-            this._deleteCard();
-            this._popupConfirm.close();
-          })
-          .catch((err) => {
-            console.error(err); 
-          });
-      });
-    });
+    this._deleteButton.addEventListener('click', () => this._handleDeleteClick());
     this._cardImage.addEventListener('click', () => this._handleCardClick());
   }
 
-  _activeLikes(data) {
+  activeLikes(data) {
     if (this._hasLiked(data.likes)) {
       this._likeButton.classList.add('card__like_active');
       this._likeCounter.textContent = ++this._likesCounter;
     } 
   }
 
-  _diactiveLikes(data) {
+  deactiveLikes(data) {
     if (!this._hasLiked(data.likes)) {
       this._likeButton.classList.remove('card__like_active');
       this._likeCounter.textContent = --this._likesCounter;
     } 
   }
 
-  _deleteCard() {
+  deleteCard() {
     this._element.remove()
     this._element = null;
   }

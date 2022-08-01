@@ -9,13 +9,12 @@ import UserInfo from '../components/UserInfo.js';
 import api from '../components/Api.js';
 
 const profilePopup = document.querySelector('.popup_profile');
-const editUserInfoButton = profilePopup.querySelector('.popup_submit');
 const nameInput = profilePopup.querySelector('.popup__name-input');
 const jobInput = profilePopup.querySelector('.popup__job-input');
 const cardPopup = document.querySelector('.popup_card');
 const buttonEdit = document.querySelector('.profile__edit-button');
 const buttonOpenCardPopup = document.querySelector('.profile__add-button');
-const updateAvatarPopup = document.querySelector('.popup_update-avatar');
+const avatarPopup = document.querySelector('.popup_update-avatar');
 const profileEditIcon = document.querySelector('.profile__update-avatar');
 
 const classObj = {
@@ -33,8 +32,8 @@ profileValidator.enableValidation();
 const cardValidator = new FormValidator(classObj, cardPopup);
 cardValidator.enableValidation();
 
-const updateAvatarValidator = new FormValidator(classObj, updateAvatarPopup);
-updateAvatarValidator.enableValidation();
+const avatarValidator = new FormValidator(classObj, avatarPopup);
+avatarValidator.enableValidation();
 
 const popupWithImage = new PopupWithImage('.popup_image');
 popupWithImage.setEventListeners();
@@ -46,6 +45,7 @@ const popupCard = new PopupWithForm('.popup_card', addNewCard);
 popupCard.setEventListeners();
 
 const popupConfirm = new PopupConfirm('.popup_confirm');
+popupConfirm.setEventListeners();
 
 const updateAvatar = new PopupWithForm('.popup_update-avatar', setNewAvatar);
 updateAvatar.setEventListeners();
@@ -57,41 +57,68 @@ const userInfo = new UserInfo({
 });
 
 const createCards = new Section({
-  items: [],
   renderer: renderCard
 }, '.cards');
 
-api.getUserData()
-  .then((result) => {
-    userInfo.setUserInfo({name: result.name, description: result.about, profileId: result._id, profileAvatar: result.avatar});
-    api.getCards()
-      .then((studentsCards) => {
-        studentsCards.reverse().forEach((elem) => {
-          createCards.addItem(elem);
-        })
-      })
-      .catch((err) => {
-        console.error(err); 
-      });
-  })
-  .catch((err) => {
-    console.error(err);
-  });
-
+Promise.all([                 
+  api.getUserData(), 
+  api.getCards() 
+]) 
+.then(([result, studentsCards])=>{
+  userInfo.setUserInfo({name: result.name, description: result.about, profileId: result._id, profileAvatar: result.avatar});
+  createCards.rendererCards(studentsCards.reverse());
+})
+.catch((err)=>{              
+  console.log(err);
+})
 
 // //функция создания прототипа карточки
 function renderCard(item) {
   const card = new Card(item, {
     cardSelector: "#card",
     handleCardClick: () => popupWithImage.open(item),
-    popupConfirm: popupConfirm, 
+    handleDeleteClick: () => openPopupConfirm(item._id, card),
     profileId: userInfo.getUserInfo().profileId,
-    deleteCard: (id) => api.deleteCard(id),
-    likeCard: (id) => api.likeCard(id),
-    dislikeCard: (id) => api.dislikeCard(id),
+    handleDislikeCard: () => dislikeCard(item._id, card),
+    handleLikeCard: () => likeCard(item._id, card)
   });
   const cardElement = card.generateCard();
   return cardElement;
+}
+
+//функция открытия попапа подтверждения удаления карточки
+function openPopupConfirm(id, card) {
+  popupConfirm.open();
+      popupConfirm.setSubmitCallback(() => {
+        api.deleteCard(id)
+          .then(() => {
+            card.deleteCard();
+            popupConfirm.close();
+          })
+          .catch((err) => {
+            console.error(err); 
+          });
+      });
+}
+
+function dislikeCard(id, card) {
+  api.dislikeCard(id)
+    .then((result) => {
+      card.deactiveLikes(result);
+    })
+    .catch((err) => {
+      console.error(err); 
+    });
+}
+
+function likeCard(id, card) {
+  api.likeCard(id)
+    .then((result) => {
+      card.activeLikes(result);
+    })
+    .catch((err) => {
+      console.error(err); 
+    });
 }
 
 //функция открытия и добавления текстовых значений в попап редактирования данных профиля
@@ -103,11 +130,11 @@ function openPropfilePopup() {
 }
 
 //функция по изменению текстовых данных профиля 
-function editProfileInfo(result) {
+function editProfileInfo(data) {
   popupProfile.setLoadingState(true);
-  api.setUserData({name: result.name, about: result.description})
-    .then(() => {
-      userInfo.setUserInfo(result);
+  api.setUserData({name: data.name, about: data.description})
+    .then((result) => {
+      userInfo.setUserInfo({name: result.name, description: result.about, profileId: result._id, profileAvatar: result.avatar});
       popupProfile.close();
     })
     .catch((err) => {
@@ -118,6 +145,7 @@ function editProfileInfo(result) {
 
 //функция добавления новой карточки
 function addNewCard(result) {
+  popupCard.setLoadingState(true);
   api.addNewCard(result)
   .then((data) => {
     createCards.addItem(data);
@@ -125,7 +153,8 @@ function addNewCard(result) {
   })
   .catch((err) => {
     console.error(err); 
-  });
+  })
+  .finally(() => popupCard.setLoadingState(false));
 }
 //функция обновления аватара
 function setNewAvatar(data) {
