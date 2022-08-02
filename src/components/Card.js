@@ -6,7 +6,6 @@ class Card {
     this._likesCounter = data.likes.length;
     this._likesCard = data.likes;
     this._ownerId = data.owner._id;
-    this._cardId = data._id;
     this._cardSelector = options.cardSelector;
     this._handleCardClick = options.handleCardClick;
     this._handleDeleteClick = options.handleDeleteClick;

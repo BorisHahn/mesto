@@ -47,8 +47,8 @@ popupCard.setEventListeners();
 const popupConfirm = new PopupConfirm('.popup_confirm');
 popupConfirm.setEventListeners();
 
-const updateAvatar = new PopupWithForm('.popup_update-avatar', setNewAvatar);
-updateAvatar.setEventListeners();
+const popupAvatar = new PopupWithForm('.popup_update-avatar', setNewAvatar);
+popupAvatar.setEventListeners();
 
 const userInfo = new UserInfo({
   nameSelector: '.profile__name',
@@ -158,16 +158,16 @@ function addNewCard(result) {
 }
 //функция обновления аватара
 function setNewAvatar(data) {
-  updateAvatar.setLoadingState(true);
+  popupAvatar.setLoadingState(true);
   api.setNewAvatar({avatar: data.avatar})
     .then((res) => {
       userInfo.setUserInfo({name: res.name, description: res.about, profileId: res._id, profileAvatar: res.avatar});
-      updateAvatar.close();
+      popupAvatar.close();
     })
     .catch((err) => {
       console.error(err); 
     })
-    .finally(() => updateAvatar.setLoadingState(false));
+    .finally(() => popupAvatar.setLoadingState(false));
 }
 
 //событие кнопки "редактировать" 
@@ -183,7 +183,7 @@ buttonOpenCardPopup.addEventListener('click', () => {
 });
 
 profileEditIcon.addEventListener('click', () => {
-  updateAvatar.open();
-  updateAvatarValidator.resetValidation();
+  popupAvatar.open();
+  avatarValidator.resetValidation();
 });
 
