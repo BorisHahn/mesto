@@ -58,14 +58,14 @@ class Card {
   activeLikes(data) {
     if (this._hasLiked(data.likes)) {
       this._likeButton.classList.add('card__like_active');
-      this._likeCounter.textContent = ++this._likesCounter;
+      this._likeCounter.textContent = data.likes.length;
     } 
   }
 
   deactiveLikes(data) {
     if (!this._hasLiked(data.likes)) {
       this._likeButton.classList.remove('card__like_active');
-      this._likeCounter.textContent = --this._likesCounter;
+      this._likeCounter.textContent = data.likes.length--;
     } 
   }
 

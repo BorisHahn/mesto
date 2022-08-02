@@ -114,6 +114,7 @@ function dislikeCard(id, card) {
 function likeCard(id, card) {
   api.likeCard(id)
     .then((result) => {
+      console.log(result);
       card.activeLikes(result);
     })
     .catch((err) => {
