@@ -65,7 +65,7 @@ class Card {
   deactiveLikes(data) {
     if (!this._hasLiked(data.likes)) {
       this._likeButton.classList.remove('card__like_active');
-      this._likeCounter.textContent = data.likes.length--;
+      this._likeCounter.textContent = data.likes.length;
     } 
   }
 
