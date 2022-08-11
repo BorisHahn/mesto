@@ -72,7 +72,7 @@ Promise.all([
   console.log(err);
 })
 
-// //функция создания прототипа карточки
+
 function renderCard(item) {
   const card = new Card(item, {
     cardSelector: "#card",
@@ -86,7 +86,7 @@ function renderCard(item) {
   return cardElement;
 }
 
-//функция открытия попапа подтверждения удаления карточки
+
 function openPopupConfirm(id, card) {
   popupConfirm.open();
       popupConfirm.setSubmitCallback(() => {
@@ -104,6 +104,7 @@ function openPopupConfirm(id, card) {
 function dislikeCard(id, card) {
   api.dislikeCard(id)
     .then((result) => {
+      console.log(result);
       card.deactiveLikes(result);
     })
     .catch((err) => {
@@ -122,7 +123,7 @@ function likeCard(id, card) {
     });
 }
 
-//функция открытия и добавления текстовых значений в попап редактирования данных профиля
+
 function openPropfilePopup() {
   const data = userInfo.getUserInfo();
   nameInput.value = data.name;
@@ -130,7 +131,7 @@ function openPropfilePopup() {
   popupProfile.open();
 }
 
-//функция по изменению текстовых данных профиля 
+
 function editProfileInfo(data) {
   popupProfile.setLoadingState(true);
   api.setUserData({name: data.name, about: data.description})
@@ -144,7 +145,7 @@ function editProfileInfo(data) {
     .finally(() => popupProfile.setLoadingState(false));
 }
 
-//функция добавления новой карточки
+
 function addNewCard(result) {
   popupCard.setLoadingState(true);
   api.addNewCard(result)
@@ -157,7 +158,7 @@ function addNewCard(result) {
   })
   .finally(() => popupCard.setLoadingState(false));
 }
-//функция обновления аватара
+
 function setNewAvatar(data) {
   popupAvatar.setLoadingState(true);
   api.setNewAvatar({avatar: data.avatar})
@@ -171,13 +172,12 @@ function setNewAvatar(data) {
     .finally(() => popupAvatar.setLoadingState(false));
 }
 
-//событие кнопки "редактировать" 
+
 buttonEdit.addEventListener('click', () => {
   openPropfilePopup();
   profileValidator.resetValidation();
 });
 
-//событие кнопки "добавить карточку"
 buttonOpenCardPopup.addEventListener('click', () => {
   popupCard.open();
   cardValidator.resetValidation();
